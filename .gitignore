@@ -1,0 +1,5 @@
+# vagrant settings
+.vagrant
+
+# user tex files
+tex/*

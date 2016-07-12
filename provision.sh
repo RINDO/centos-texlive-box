@@ -37,18 +37,21 @@ expect -c "
   expect \"Enter command:\"
   send  \"I\r\"
 
-  expect \"Installation failed.\"
-  send \"./install-tl --profile installation.profile\"
-
-  expect \"Do you want to continue with the exact same settings as before (y/N):\"
-  send \"y\"
-
   expect \"Time used for installing the packages:\"
   send \"exit 1\"
 "
 
 echo "export PATH=/usr/local/texlive/2016/bin/x86_64-linux/:$PATH" >> /etc/profile
 source /etc/profile
+
+#
+# tlmgr: package repository ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/systems/texlive/tlnet (verified)
+# tlmgr: backupdir as set in tlpdb
+#   /usr/local/texlive/2016/tlpkg/backups
+# is not a directory.
+# 
+
+mkdir /usr/local/texlive/2016/tlpkg/backups
 
 echo "Setting tlmgr repository"
 tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet

@@ -54,11 +54,20 @@ brew cask install vagrant-manager
 
 ```
 $ cd $$PROJECT_PATH$$
-$ git clone 
+$ git clone git@github.com:RINDO/centos-texlive2016-box.git
 $ cd centos-tex-box
 $ cp -R $$TEX_DIR$$ $$PROJECT_DIR$$/centos-tex-box/tex
 ```
 
+## Vagrantの設定
+
+### 手動
+
+手動で設定を行いたい人は [手動での設定](https://github.com/RINDO/centos-texlive2016-box/blob/master/manual_install.md) を参考にしてください。
+
+自動で設定する人は以下に進んでください。
+
+### 自動
 
 次に、Vagrantを操作して仮想マシンの初期設定を行っていきます。
 

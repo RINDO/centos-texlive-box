@@ -48,6 +48,34 @@ Vagrantの操作をツールバー上で行うことができます。
 brew cask install vagrant-manager
 ```
 
+# Quick Install
+
+まずはtex用のディレクトリを作成します 
+
+```
+$ mkdir tex
+$ cd tex
+$ vagrant init 
+```
+
+次に、Atlasに登録してあるvagrant boxを入手します。
+Vagrantfileを以下のように編集してください。
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "RINDO/centos-texlive2016"
+end
+```
+
+編集が終わったら、以下のコマンドを叩いてboxをダウンロードしてください。
+
+```
+$ vagrant up
+$ vagrant ssh
+```
+
+`vagrant ssh` 以下は下記の手順で操作可能です。
+
 # Texコンパイルまで
 
 まずは、Githubからリポジトリをcloneしてtexフォルダ内に自分のtexファイルや画像を入れます。

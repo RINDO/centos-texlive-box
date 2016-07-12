@@ -6,13 +6,13 @@
 echo "Installing yum packages"
 
 echo "Installing perl"
-yum -y install perl >/dev/null 2>&1
+yum -y install perl
 
 echo "Installing expect"
-yum -y install expect >/dev/null 2>&1
+yum -y install expect
 
 echo "Installing ImageMagick"
-yum -y install ImageMagick >/dev/null 2>&1
+yum -y install ImageMagick
 
 # 
 # install Texlive for Linux
@@ -20,7 +20,7 @@ yum -y install ImageMagick >/dev/null 2>&1
 #
 
 echo "Dowinloading Texlive for linux. Maybe take about 30 minutes."
-wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz >/dev/null 2>&1
+wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar xvzf install-tl-unx.tar.gz
 cd install-tl-*
 
@@ -33,10 +33,19 @@ echo "Installing Texlive. Take about 30 minutes."
 expect -c "
   set timeout -1
   spawn ./install-tl
+  
   expect \"Enter command:\"
-  send \"I\"
+  send  \"I\r\"
+
+  expect \"Installation failed.\"
+  send \"./install-tl --profile installation.profile\"
+
+  expect \"Do you want to continue with the exact same settings as before (y/N):\"
+  send \"y\"
+
+  expect \"Time used for installing the packages:\"
+  send \"exit 1\"
 "
-echo "Complete install Texlive"
 
 echo "export PATH=/usr/local/texlive/2016/bin/x86_64-linux/:$PATH" >> /etc/profile
 source /etc/profile

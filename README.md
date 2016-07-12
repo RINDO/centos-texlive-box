@@ -77,7 +77,9 @@ $ dvipdfmx $$TEX_FILE$$.dvi
 
 # 備考
 
-フォルダの同期
+## フォルダの同期
+
+Hostマシンの `./tex/source` フォルダは、 Vagrant上の `/vagrant/tex` に同期されます。
 
 ```
 config.vm.synced_folder "./tex/source", "/vagrant/tex"

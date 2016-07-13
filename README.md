@@ -119,3 +119,32 @@ Hostマシンの `./tex/source` フォルダは、 Vagrant上の `/vagrant/tex` 
 ```
 config.vm.synced_folder "./tex/source", "/vagrant/tex"
 ```
+
+## VirtualBoxのエラーが出たら
+
+VirtualBoxのVersionが新しいと、 `vagrant up` したときに以下のエラーが出てしまいます。 
+
+```
+The provider 'virtualbox' that was requested to back the machine
+'default' is reporting that it isn't usable on this system. The
+reason is shown below:
+
+Vagrant has detected that you have a version of VirtualBox installed
+that is not supported by this version of Vagrant. Please install one of
+the supported versions listed below to use Vagrant:
+
+4.0, 4.1, 4.2, 4.3, 5.0
+
+A Vagrant update may also be available that adds support for the version
+you specified. Please check www.vagrantup.com/downloads.html to download
+the latest version.
+```
+
+上記のエラーが出たら、以下のリンクから古いものをインストールしましょう。  `brew cask` でインストールしたものは消しておきます。
+
+```
+brew cask uninstall virtualbox
+```
+
+[Download VirtualBox (Old Builds)](https://www.virtualbox.org/wiki/Download_Old_Builds)
+

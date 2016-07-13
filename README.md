@@ -67,7 +67,13 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-編集が終わったら、以下のコマンドを叩いてboxをダウンロードしてください。
+編集が終わったら、tex用のフォルダを作成します。
+
+```
+mkdir -p tex/source
+```
+
+最後に、以下のコマンドを叩いてboxをダウンロードしてください。
 
 ```
 $ vagrant up

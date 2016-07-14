@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "bento/centos-6.7"
 
   # texフォルダにtexファイルを入れる
-  config.vm.synced_folder "./tex/source", "/vagrant/tex"
+  config.vm.synced_folder ".", "/vagrant/tex"
 
   # provision.shでcentos用のtex環境を整える
   config.vm.provision :shell, path: "provision.sh"

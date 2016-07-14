@@ -63,14 +63,8 @@ Vagrantfileを以下のように編集してください。
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.vm.box = "RINDO/centos-texlive2016"
+  config.vm.box = "RINDO/centos-texlive"
 end
-```
-
-編集が終わったら、tex用のフォルダを作成します。
-
-```
-mkdir -p tex/source
 ```
 
 最後に、以下のコマンドを叩いてboxをダウンロードしてください。
@@ -88,8 +82,8 @@ $ vagrant ssh
 
 ```
 $ cd $$PROJECT_PATH$$
-$ git clone git@github.com:RINDO/centos-texlive2016-box.git
-$ cd centos-texlive2016-box
+$ git clone git@github.com:RINDO/centos-texlive-box.git
+$ cd centos-texlive-box
 $ cp -R $$TEX_DIR_PATH$$ .
 ```
 
@@ -114,7 +108,7 @@ $ dvipdfmx $$TEX_FILE$$.dvi
 
 ## フォルダの同期
 
-Hostマシンの `centos-texlive2016-box/` フォルダは、 Vagrant上の `/vagrant/tex` に同期されています。
+Hostマシンの `centos-texlive-box/` フォルダは、 Vagrant上の `/vagrant/tex` に同期されています。
 
 ```
 config.vm.synced_folder ".", "/vagrant/tex"

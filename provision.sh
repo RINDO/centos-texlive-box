@@ -41,17 +41,22 @@ expect -c "
   send \"exit 1\"
 "
 
-echo "export PATH=/usr/local/texlive/2016/bin/x86_64-linux/:$PATH" >> /etc/profile
+cd /usr/local/texlive/20*/
+TEX_PATH=$(pwd)
+
+echo "export PATH=${TEX_PATH}/bin/x86_64-linux/:$PATH" >> /etc/profile
 source /etc/profile
+
+mktexlsr
 
 #
 # tlmgr: package repository ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/systems/texlive/tlnet (verified)
 # tlmgr: backupdir as set in tlpdb
-#   /usr/local/texlive/2016/tlpkg/backups
+#   /usr/local/texlive/20**/tlpkg/backups
 # is not a directory.
 # 
-
-mkdir /usr/local/texlive/2016/tlpkg/backups
+mkdir -p ${TEX_PATH}/tlpkg/backups
+chmod -R a+w ${TEX_PATH}/tlpkg/backups
 
 echo "Setting tlmgr repository"
 tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet

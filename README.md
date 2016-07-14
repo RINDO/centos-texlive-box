@@ -19,7 +19,7 @@ Homebrew Caskを使わずにリンク先からダウンロードしても問題�
 HomebrewCaskでインストールすると管理が楽になります。
 
 ```
-brew install caskroom/cask/brew-cask
+brew tap caskroom/cask
 ```
 
 --
@@ -89,8 +89,8 @@ $ vagrant ssh
 ```
 $ cd $$PROJECT_PATH$$
 $ git clone git@github.com:RINDO/centos-texlive2016-box.git
-$ cd centos-tex-box
-$ cp -R $$TEX_DIR$$ $$PROJECT_DIR$$/centos-tex-box/tex
+$ cd centos-texlive2016-box
+$ cp -R $$TEX_DIR_PATH$$ .
 ```
 
 ## Vagrantの設定
@@ -114,10 +114,10 @@ $ dvipdfmx $$TEX_FILE$$.dvi
 
 ## フォルダの同期
 
-Hostマシンの `./tex/source` フォルダは、 Vagrant上の `/vagrant/tex` に同期されます。
+Hostマシンの `centos-texlive2016-box/` フォルダは、 Vagrant上の `/vagrant/tex` に同期されています。
 
 ```
-config.vm.synced_folder "./tex/source", "/vagrant/tex"
+config.vm.synced_folder ".", "/vagrant/tex"
 ```
 
 ## VirtualBoxのエラーが出たら

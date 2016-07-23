@@ -63,7 +63,7 @@ Vagrantfileを以下のように編集してください。
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.vm.box = "RINDO/centos-texlive"
+  config.vm.box = "RINDO/centos-texlive-box"
 end
 ```
 

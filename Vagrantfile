@@ -8,7 +8,7 @@
 Vagrant.configure("2") do |config|
 
   # boxにはbentoのcentos6.7を使用
-  config.vm.box = "bento/centos-6.7"
+  config.vm.box = "bento/centos-7.2"
 
   # texフォルダにtexファイルを入れる
   config.vm.synced_folder ".", "/vagrant/tex"

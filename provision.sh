@@ -3,13 +3,8 @@
 # http://www.fugenji.org/~thomas/texlive-guide/
 #
 
-# rsync -a rsync://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/telnet/ .
-
-echo "updating yum"
-yum -y update >> /dev/null
-
 echo "Installing rsync"
-yum -y install rsync >> dev/null
+yum -y install rsync >> /dev/null
 
 echo "Installing perl"
 yum -y install perl >> /dev/null
@@ -26,21 +21,22 @@ yum -y install ImageMagick >> /dev/null
 # https://texwiki.texjp.org/?TeX%20Live#v9c33c6a
 #
 
-echo "Dowinloading Texlive for linux. Maybe take about 30 minutes."
 if [ ! -e 'install-tl-unx.tar.gz' ]; then
+  echo "Downloading Texlive installer"
   rsync -r rsync://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz .
-  tar xvzf install-tl-unx.tar.gz
+  tar xvzf install-tl-unx.tar.gz >> /dev/null
 fi
-
-# install-tl-20161115
-cd install-tl-*
 
 #
 # install-tl : TeX Live cross-platform installer
 # https://www.tug.org/texlive/doc/install-tl.html
 #
 
-if [ ! -e '/usr/local/texlive/']; then
+if [ ! -e '/usr/local/texlive/' ]; then
+
+  # ex: install-tl-20161115
+  cd install-tl-*
+
   echo "Installing Texlive. Take about 30 minutes."
   expect -c "
     set timeout -1
@@ -56,6 +52,7 @@ if [ ! -e '/usr/local/texlive/']; then
   cd /usr/local/texlive/20*/
   TEX_PATH=$(pwd)
 
+  echo "export TEX_PATH=${TEX_PATH}" >> /etc/profile
   echo "export PATH=${TEX_PATH}/bin/x86_64-linux/:$PATH" >> /etc/profile
   source /etc/profile
 
@@ -67,17 +64,16 @@ if [ ! -e '/usr/local/texlive/']; then
   #   /usr/local/texlive/20**/tlpkg/backups
   # is not a directory.
   # 
+
   mkdir -p ${TEX_PATH}/tlpkg/backups
-  chmod -R a+w ${TEX_PATH}/tlpkg/backups
-
-  echo "Setting tlmgr repository"
-  tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet >> /dev/null
-
-  echo "Updating tlmgr"
-  tlmgr update --self >> /dev/null
-
-  echo "Updating tlmgr packages"
-  tlmgr update --all >> /dev/null
-
-  echo "Finished!"
+  chmod a+w ${TEX_PATH}/tlpkg
+  chmod a+w ${TEX_PATH}/tlpkg/backups
 fi
+
+echo "Setting tlmgr repository"
+tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet >> /dev/null
+
+echo "Updating tlmgr"
+tlmgr update --self --all >> /dev/null
+
+echo "Finished!"

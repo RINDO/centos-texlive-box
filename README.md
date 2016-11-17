@@ -147,7 +147,7 @@ brew cask uninstall virtualbox
 
 ![検証中](https://cloud.githubusercontent.com/assets/2969018/16825368/2738dc88-49af-11e6-84ef-0b2527285c43.png)
 
-[こののページ](https://forums.virtualbox.org/viewtopic.php?f=8&t=77122)を参考にしてください。
+[このページ](https://forums.virtualbox.org/viewtopic.php?f=8&t=77122)を参考にしてください。
 
 マウントした状態で以下のコマンドを入力するとインストールできるようになります。 
 
